@@ -1,0 +1,1 @@
+NewTab page for web pages or just a site
