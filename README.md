@@ -3,7 +3,7 @@
 
 New Tab page for web pages or just a site
 
-_TODO List_
+#### TODO List
 - [ ] Have active bookmark Bar
 - [ ] Populate the bookmark bar from MySQL or local database
 - [ ] Have favicon in database and have it beside link name in bookmark Bar
@@ -13,10 +13,10 @@ _TODO List_
 - [ ] Web Comics - Have this area populated by RSS feeds
 *Possibly have a pocket news feed*
 
-_Settings area_
+#### Settings area
 - when the user clicks the gear icon it opens a popup box
 - In the box have the settings. Which may include
-  1. Themes for the pages
-  2. List of RSS Feeds for podcast and web comics separate
-  3. Have a google log in
-  4. *Maybe* use a bookmarking service and log in here.
+  - Themes for the pages
+  - List of RSS Feeds for podcast and web comics separate
+  - Have a google log in
+  - *Maybe* use a bookmarking service and log in here.
