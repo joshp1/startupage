@@ -38,4 +38,5 @@
 #bookmark_bar li
 { display :inline;
   border: 1px solid #555;
+  padding: 11 22 33 44;
 }
