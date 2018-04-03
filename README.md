@@ -1,4 +1,4 @@
-# Web browser new tab pages
+# Web browser new tab page
 *This is a new tab page/startup page for any web browser*
 
 New Tab page for web pages or just a site
