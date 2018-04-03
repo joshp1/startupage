@@ -115,10 +115,6 @@
 
       </td>
       <td class="feeds">
-        <!-- Pocket feed area-->
-        <h1>
-          Test area
-        </h1>
       </td>
     </tr>
   </table>
