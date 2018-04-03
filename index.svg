@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">
+<g id="this" stroke="black" stroke-width="5" fill="red">
+    <rect height="100" width="300" />
+   <text id="Web_Comic" data-name="Web Comic" class="cls-11" x="11" y="22" font-size="22" stroke-width="2">Web Comic</text>
+   <text id="Bookmarks" class="cls-2" x="903.289" y="127.5">Bookmarks</text>
+   <text id="News_Feeds" data-name="News Feeds" class="cls-3" x="358.499" y="312">News Feeds</text>
+    <text id="Pocket_Feed" data-name="Pocket Feed" class="cls-4" x="1456.499" y="346">Pocket Feed</text>
+</g>
+</svg>
