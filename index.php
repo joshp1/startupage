@@ -4,6 +4,7 @@
     Starup/New Tab page
   </title>
   <link rel="stylesheet" type="text/css" href="index.css">
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
   <table>
@@ -98,7 +99,10 @@
           </div>
           <div id='aa' class='tabcontent'>
             <h3>London</h3>
-            <p>London captital of Enland</p>
+            <p>London captital of the land of the Engs/p>
+
+            <p id="sEle"></p>
+            <p id='aEle'></p>
           </div>
           <div id="ab" class="tabcontent">
             <h3>Paris</h3>
@@ -119,7 +123,16 @@
     </tr>
   </table>
 
+<!-- php simplexml --><?php
+  $url='https://news.google.com/news/rss/?ned=us&gl=US&hl=en';
+  $xml=file_get_contents ($url, false, $context);
+  $xmla=simplexml_load_string ($xml);
+  foreach ($xmla->channel->category-> as $child)
+  { echo "chilld node: ".$child. "<br />";
+  }?>
   <script>
+
+    // Get the element with id="defaultOpen" and click on it
     function openCity(evt, cityName) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
@@ -134,7 +147,6 @@
           evt.currentTarget.className += " active";
     }
 
-    // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
   </script>
 </body>

@@ -4,6 +4,7 @@
     Starup/New Tab page
   </title>
   <link rel="stylesheet" type="text/css" href="index.css">
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
   <table>
@@ -99,10 +100,16 @@
           <div id='aa' class='tabcontent'>
             <h3>London</h3>
             <p>London captital of Enland</p>
+            <?php
+            // get googel's headline api here
+            ?>
+            <p id="sEle"></p>
+            <p id='aEle'></p>
           </div>
           <div id="ab" class="tabcontent">
             <h3>Paris</h3>
             <p>Captial of France. Fun to say witha French accent</p>
+            <?php
           </div>
           <div id='ac' class='tabcontent'>
             <h3>Tokeyo</h3>
@@ -120,22 +127,15 @@
   </table>
 
   <script>
-    function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-          document.getElementById(cityName).style.display = "block";
-          evt.currentTarget.className += " active";
-    }
+    var xml = "<rss version='2.0'><channel><title>RSS Title</title></channel></rss>",
+    xmlDoc=$.parseXML( xml ),
+    $xml = $( xmlDoc ),
+    $title=$xml.find( "title" );
 
-    // Get the element with id="defaultOpen" and click on it
-    document.getElementById("defaultOpen").click();
+    $( "sEle").append( $title.text () );
+
+    $title.text ("XML Title");
+    $( "#aEle").append( $title.text ());
   </script>
 </body>
 </html>
