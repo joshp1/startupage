@@ -48,3 +48,4 @@ Temporary Items
 
 # ignore config files
 .ftpconfig
+known_hosts

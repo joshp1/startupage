@@ -25,7 +25,7 @@
         </div>
         <ul id="bookmark_bar">
           <li id='ic1' class="icn">
-            link 1 abc
+            link 1
           </li>
           <li id='ic2' class="icn">
             link 2
