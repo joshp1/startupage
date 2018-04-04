@@ -86,7 +86,7 @@
       </td>
     </tr>
     <tr>
-      <td class="feeds" width="2000px">
+      <td class="feeds">
         <!-- news feed area -->
         <div id="fdhd">News Feeds
         </div>
@@ -98,14 +98,14 @@
             <button class="tablinks" onclick="openCity (event, 'ad')"><div class="tabl">Web Comics</div></button>
           </div>
           <div id='aa' class='tabcontent'>
-            <h3>London</h3>
-            <p>London captital of the land of the Engs/p>
-              <!-- php simplexml --><?php
+              <!-- php simplexml -->
+              <?php
                 $url='https://news.google.com/news/rss/?ned=us&gl=US&hl=en';
                 $xml=file_get_contents ($url, false, $context);
                 $xmla=simplexml_load_string ($xml);
+                echo $xmla->channel->title;
                 foreach ($xmla->channel->item as $child)
-                { echo "chilld node: ".$child->description. "";
+                { echo $child->description. "";
 
                 }?>
             <p id="sEle"></p>
@@ -114,6 +114,15 @@
           <div id="ab" class="tabcontent">
             <h3>Paris</h3>
             <p>Captial of France. Fun to say witha French accent</p>
+            <?php
+              $url='https://forecast.weather.gov/MapClick.php?lat=38.3109&lon=-81.7302&unit=0&lg=english&FcstType=dwml';
+              $xml=file_get_contents ($url, false, $context);
+              $xmla=simplexml_load_string ($xml);
+              echo $xmla->data;
+              foreach ($xmla->data as $child)
+              { echo $child->weather. "";
+
+              }?>
           </div>
           <div id='ac' class='tabcontent'>
             <h3>Tokeyo</h3>
