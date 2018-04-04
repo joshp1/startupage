@@ -100,7 +100,14 @@
           <div id='aa' class='tabcontent'>
             <h3>London</h3>
             <p>London captital of the land of the Engs/p>
+              <!-- php simplexml --><?php
+                $url='https://news.google.com/news/rss/?ned=us&gl=US&hl=en';
+                $xml=file_get_contents ($url, false, $context);
+                $xmla=simplexml_load_string ($xml);
+                foreach ($xmla->channel->item as $child)
+                { echo "chilld node: ".$child->description. "";
 
+                }?>
             <p id="sEle"></p>
             <p id='aEle'></p>
           </div>
@@ -123,13 +130,7 @@
     </tr>
   </table>
 
-<!-- php simplexml --><?php
-  $url='https://news.google.com/news/rss/?ned=us&gl=US&hl=en';
-  $xml=file_get_contents ($url, false, $context);
-  $xmla=simplexml_load_string ($xml);
-  foreach ($xmla->channel->category-> as $child)
-  { echo "chilld node: ".$child. "<br />";
-  }?>
+
   <script>
 
     // Get the element with id="defaultOpen" and click on it
