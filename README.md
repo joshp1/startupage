@@ -10,7 +10,7 @@ New Tab page for web pages or just a site
 - [ ] Google Headlines - Have Google headline feeds populate that area
 - [ ] Google Local news- Have google local news feeds populate that area or have another news service do it
 - [ ] Podcast - Have this area populated by RSS Feeds
-- [ ] Web Comics - Have this area populated by RSS feeds
+- [ ] Web Comics - Have this area populated by RSS feeds  
 *Possibly have a pocket news feed*
 
 #### Settings area

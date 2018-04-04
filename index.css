@@ -18,7 +18,7 @@
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-    background-color: #ddd;
+    background-color: #999;
 }
 
 /* Create an active/current tablink class */
@@ -39,4 +39,12 @@
 { display :inline;
   border: 1px solid #555;
   padding: 11 11 11 11;
+}
+#bookmark_bar li:hover
+{
+  background-color :#aaa;
+}
+#bookmark_bar li:active
+{
+  background-color :#636363;
 }
