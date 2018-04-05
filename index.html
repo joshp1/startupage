@@ -20,15 +20,14 @@
     $(document).ready (function ()
   { $.ajax({type:'GET',
       url:xml,
-      contentType: 'text/xml',
       xhrFields: {
         withCredentials:false
       },
-      dataType: "xml",
+      dataType: "jsonp",
       success: function (data)
       {
 
-        xmlD=$.parseXML( xml ),
+        xmlD=$.parseJSON( xml ),
         $xml=$( xmlD ),
         $titel=$xml.find ( "title" );
         $( "sEle" ).append( $titel.text () );
@@ -40,6 +39,28 @@
   })
   })
 
+  </script>
+  <script lanuage="javascript">
+  function openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
   </script>
 </head>
 <body>
@@ -142,8 +163,10 @@
                 echo $xmla->channel->title;
                 foreach ($xmla->channel->item as $child)
                 { echo $child->description. "";
-
-                }?>
+                }
+                // json to xml
+                //echo json_encode($xmla);
+                ?>
             <p id="sEle"></p>
             <p id='aEle'></p>
           </div>
@@ -151,13 +174,15 @@
             <h3>Paris</h3>
             <p>Captial of France. Fun to say witha French accent</p>
             <?php
-              $url='https://forecast.weather.gov/MapClick.php?lat=38.3109&lon=-81.7302&unit=0&lg=english&FcstType=dwml';
+              $url='https://news.google.com/news/rss/?ned=us&gl=US&hl=en';
               $xml=file_get_contents ($url, false, $context);
               $xmla=simplexml_load_string ($xml);
+              $json=json_encode ($xmla);
+              echo $json;
+
               echo $xmla->data;
               foreach ($xmla->data as $child)
               { echo $child->weather. "";
-
               }?>
           </div>
           <div id='ac' class='tabcontent'>
