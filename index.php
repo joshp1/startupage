@@ -5,6 +5,42 @@
   </title>
   <link rel="stylesheet" type="text/css" href="index.css">
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script>
+    function parseRSS(url, callback) {
+      $.ajax({
+        url: document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(url),
+        dataType: 'json',
+        success: function(data) {
+          callback(data.responseData.feed);
+        }
+      });
+    }
+    xml='https://news.google.com/news/rss/?ned=us&gl=US&hl=en'
+  //  xml='http://github.com/yql/yql-tables/raw/master/weather/weather.bylocation.xml'
+    $(document).ready (function ()
+  { $.ajax({type:'GET',
+      url:xml,
+      contentType: 'text/xml',
+      xhrFields: {
+        withCredentials:false
+      },
+      dataType: "xml",
+      success: function (data)
+      {
+
+        xmlD=$.parseXML( xml ),
+        $xml=$( xmlD ),
+        $titel=$xml.find ( "title" );
+        $( "sEle" ).append( $titel.text () );
+      },
+      error:function ()
+      { $( "sEle" ).append ("Error! Error! Error! You got a error!")
+      }
+
+  })
+  })
+
+  </script>
 </head>
 <body>
   <table>
