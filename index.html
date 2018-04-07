@@ -9,13 +9,13 @@
     function parseRSS(url, callback) {
       $.ajax({
         url: document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(url),
-        dataType: 'json',
+        dataType: 'xml',
         success: function(data) {
           callback(data.responseData.feed);
         }
       });
     }
-    xml='https://news.google.com/news/rss/?ned=us&gl=US&hl=en'
+    xml='http://joshlucy.info/projects/test/newtabpage/index.php'
   //  xml='http://github.com/yql/yql-tables/raw/master/weather/weather.bylocation.xml'
     $(document).ready (function ()
   { $.ajax({type:'GET',
@@ -23,12 +23,13 @@
       xhrFields: {
         withCredentials:false
       },
-      dataType: "jsonp",
+      dataType: "xml",
       success: function (data)
       {
 
-        xmlD=$.parseJSON( xml ),
-        $xml=$( xmlD ),
+        $xmlD=$.parseXML( xml ),
+        $xml=$( $xmlD ),
+        $( "sEle" ).append( $xmlDtitle );
         $titel=$xml.find ( "title" );
         $( "sEle" ).append( $titel.text () );
       },
@@ -150,41 +151,35 @@
 
           <div class="tab">
             <button class="tablinks" onclick="openCity (event, 'aa')" id="defaultOpen"><div class="tabl">Google Headlines</div></button>
-            <button class="tablinks" onclick="openCity (event, 'ab')"><div class="tabl">Google Local News</div></button>
+            <button class="tablinks" onclick="openCity (event, 'ab')"><div class="tabl">Weather</div></button>
             <button class="tablinks" onclick="openCity (event, 'ac')"><div class="tabl">Podcast</div></button>
             <button class="tablinks" onclick="openCity (event, 'ad')"><div class="tabl">Web Comics</div></button>
           </div>
           <div id='aa' class='tabcontent'>
-              <!-- php simplexml -->
-              <?php
-                $url='https://news.google.com/news/rss/?ned=us&gl=US&hl=en';
-                $xml=file_get_contents ($url, false, $context);
-                $xmla=simplexml_load_string ($xml);
-                echo $xmla->channel->title;
-                foreach ($xmla->channel->item as $child)
-                { echo $child->description. "";
-                }
-                // json to xml
-                //echo json_encode($xmla);
-                ?>
+            <!-- - this is where the news from google news should b located. I need to give user options of news sources -->
             <p id="sEle"></p>
             <p id='aEle'></p>
           </div>
           <div id="ab" class="tabcontent">
-            <h3>Paris</h3>
-            <p>Captial of France. Fun to say witha French accent</p>
-            <?php
-              $url='https://news.google.com/news/rss/?ned=us&gl=US&hl=en';
-              $xml=file_get_contents ($url, false, $context);
-              $xmla=simplexml_load_string ($xml);
-              $json=json_encode ($xmla);
-              echo $json;
+            <p id="city">b</p>
+            <p id="befe">a</p>
+            <script>
 
-              echo $xmla->data;
-              foreach ($xmla->data as $child)
-              { echo $child->weather. "";
-              }?>
-          </div>
+              var yqlCallback = function(data) {
+                var wind = data.query.results.channel;var wend=data.query.results.channel.item;
+                alert(wind.title);
+                document.getElementById ("city").innerHTML="<h1>"+wind.location.city+", "+wind.location.region+"</h1>";
+                document.getElementById ("befe").innerHTML=wind.item.title+"<br />";
+                for (i in wend.forecast)
+                {document.getElementById ("befe").innerHTML += wend.forecast[i].day+": high: <b>"+
+                wend.forecast[i].high+ "</b> low: <b>" +
+                wend.forecast[i].low +"</b> "+wend.forecast[i].text+ "<br />";}
+              };
+
+            </script>
+           </div>
+            <script src="https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='charleston, wv')&format=json&callback=yqlCallback"></script>
+
           <div id='ac' class='tabcontent'>
             <h3>Tokeyo</h3>
             <p>Capital of Japan. Not spelled right but hell this is just a place holder</p>
