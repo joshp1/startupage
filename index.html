@@ -161,25 +161,21 @@
             <p id='aEle'></p>
           </div>
           <div id="ab" class="tabcontent">
-            <p id="city">b</p>
+            <h3>Paris</h3>
+            <p>Captial of France. Fun to say witha French accent</p>
+
             <p id="befe">a</p>
             <script>
-
               var yqlCallback = function(data) {
-                var wind = data.query.results.channel;var wend=data.query.results.channel.item;
+                var wind = data.query.results.channel;
                 alert(wind.title);
-                document.getElementById ("city").innerHTML="<h1>"+wind.location.city+", "+wind.location.region+"</h1>";
-                document.getElementById ("befe").innerHTML=wind.item.title+"<br />";
-                for (i in wend.forecast)
-                {document.getElementById ("befe").innerHTML += wend.forecast[i].day+": high: <b>"+
-                wend.forecast[i].high+ "</b> low: <b>" +
-                wend.forecast[i].low +"</b> "+wend.forecast[i].text+ "<br />";}
+                document.getElementById ("befe").innerHTML=wind.description+"<br />";
               };
+            </script>
 
+            <script src="https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='charleston, wv')&format=json&callback=yqlCallback">
             </script>
            </div>
-            <script src="https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='charleston, wv')&format=json&callback=yqlCallback"></script>
-
           <div id='ac' class='tabcontent'>
             <h3>Tokeyo</h3>
             <p>Capital of Japan. Not spelled right but hell this is just a place holder</p>
