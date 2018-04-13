@@ -6,15 +6,78 @@
   <link rel="stylesheet" type="text/css" href="index.css">
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <script>
-    function parseRSS(url, callback) {
-      $.ajax({
-        url: document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(url),
-        dataType: 'xml',
-        success: function(data) {
-          callback(data.responseData.feed);
+    function cityN (){
+      if ("geolocation" in navigator) {
+        console.log ("ok");
+        navigator.geolocation.getCurrentPosition(function(position) {
+          console.log(position.coords.latitude, position.coords.longitude);
+
+          $.ajax({
+            url:"http://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude+"&sensor=false",
+            dataType: "json",
+            success: function (dataa){
+              console.log ("it worked");
+              for (ii in dataa.results){
+                for (iii in dataa.results[ii].address_components)
+                { console.log (dataa.results [1].address_components[3].long_name+", "+ dataa.results [1].address_components[6].short_name);
+                  var longN=dataa.results [1].address_components[3].long_name;
+                  return longN;
+                }
+              }
+            }
+          });
+        });
+        /* geolocation is available */
+      } else {
+        console.log ("ko");
+        /* geolocation IS NOT available */
+      }}
+      function stateN (){
+        if ("geolocation" in navigator) {
+          console.log ("ok");
+          navigator.geolocation.getCurrentPosition(function(position) {
+            console.log(position.coords.latitude, position.coords.longitude);
+            $.ajax({
+                url:"http://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude+"&sensor=false",
+                dataType: "json",
+                success: function (dataa){
+                  console.log ("it worked");
+                  for (ii in dataa.results){
+                    for (iii in dataa.results[ii].address_components)
+                    { console.log (dataa.results [1].address_components[6].short_name);
+                      var shortN=dataa.results [1].address_components[3].short_name;
+                      var longN=dataa.results [1].address_components[3].long_name;
+
+                      return shortN;
+
+                      /*
+                      this code could b jibberish see if there is anywhere yahooapis can use langitute and latitude to
+                      to get Weather
+
+                       var scr1='<script src="https://query.yahooapis.com/v1/public/yql?q=select *from weather.forecast where woeid in (select woeid from geo.places(1) where text=';
+                      // var scr2="'"+longN+", "+shortN+"'"+
+                       var scr3=')&format=json&callback=yqlCallback"></script>';
+                       document.write (scr1+"'"+longN+","+shortN+"'"+scr3); */
+                    }
+                  }
+                }
+              });
+            });}
+          /* geolocation is available */
+          } else {
+          console.log ("ko");
+          /* geolocation IS NOT available */
         }
-      });
-    }
+      }
+      function parseRSS(url, callback) {
+        $.ajax({
+          url: document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(url),
+          dataType: 'xml',
+          success: function(data) {
+            callback(data.responseData.feed);
+          }
+        });
+      }
     xml='http://joshlucy.info/projects/test/newtabpage/index.php'
   //  xml='http://github.com/yql/yql-tables/raw/master/weather/weather.bylocation.xml'
     $(document).ready (function ()
@@ -41,7 +104,7 @@
   })
 
   </script>
-  <script lanuage="javascript">
+  <script language="javascript">
   function openCity(evt, cityName) {
     // Declare all variables
     var i, tabcontent, tablinks;
@@ -161,6 +224,7 @@
             <p id='aEle'></p>
           </div>
           <div id="ab" class="tabcontent">
+            <p id ="sec">c</p>
             <p id="city">b</p>
             <p id="befe">a</p>
             <script>
@@ -175,11 +239,8 @@
                 wend.forecast[i].high+ "</b> low: <b>" +
                 wend.forecast[i].low +"</b> "+wend.forecast[i].text+ "<br />";}
               };
-
             </script>
            </div>
-            <script src="https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='charleston, wv')&format=json&callback=yqlCallback"></script>
-
           <div id='ac' class='tabcontent'>
             <h3>Tokeyo</h3>
             <p>Capital of Japan. Not spelled right but hell this is just a place holder</p>
